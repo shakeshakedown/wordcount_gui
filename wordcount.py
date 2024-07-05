@@ -31,14 +31,9 @@ class Intro(tk.Tk):
 
     def remove_words(self):
         frame=self.punc_frame
-        tk.Label(frame, text="Words to Ignore").grid(row=1)
-        row = 2
-        curr_column = -1
+        tk.Label(frame, text="Words to Ignore").grid(row=1, columnspan=8, sticky="w")
         for num, word in enumerate(self.stop_words):
-            curr_column += 1
-            if curr_column >= 8:
-                curr_column = 0
-                row += 1
+            row, curr_column = divmod(num, 8)
             checkbox = Checkbutton(frame, variable=num, text=word)
             checkbox.grid(row=row, column=curr_column, sticky="w")
             checkbox.select()
